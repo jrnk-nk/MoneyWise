@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoneyWise — Financial Life Simulator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <h1>MoneyWise</h1>
+    <p>Financial Life Simulator</p>
+    <p>Learn to budget, save and invest wisely.</p>
+</header>
+
+<nav aria-label="Main navigation">
+    <button class="active" data-page="home">Home</button>
+    <button data-page="learn">Learn</button>
+    <button data-page="budget">Budget</button>
+    <button data-page="savings">Savings</button>
+    <button data-page="invest">Investment</button>
+    <button data-page="quiz">Quiz</button>
+    <button data-page="progress">Progress</button>
+</nav>
+
+<main>
+
+    <!-- HOME PAGE -->
+    <section id="home" class="active">
+
+        <h2>Welcome to MoneyWise</h2>
+
+        <p>
+            MoneyWise is a financial learning tool that helps students
+            understand money management through lessons and practical
+            simulations.
+        </p>
+
+        <div class="grid">
+
+            <div class="card">
+                <h3>Virtual Balance</h3>
+                <div class="metric" id="homeBalance">GH₵ 1,000.00</div>
+                <p class="muted">Your practice money.</p>
+            </div>
+
+            <div class="card">
+                <h3>Lessons Completed</h3>
+                <div class="metric" id="homeLessons">0 / 7</div>
+                <p class="muted">Your learning progress.</p>
+            </div>
+
+            <div class="card">
+                <h3>Best Quiz Score</h3>
+                <div class="metric" id="homeQuiz">Not taken</div>
+                <p class="muted">Your highest quiz result.</p>
+            </div>
+
+        </div>
+
+        <div class="card">
+            <h3>How to Use MoneyWise</h3>
+
+            <ol>
+                <li>Open Learn and study the seven lessons.</li>
+                <li>Use Budget to practise managing money.</li>
+                <li>Set a savings goal and track your progress.</li>
+                <li>Try different investment scenarios.</li>
+                <li>Complete the quiz and check your progress.</li>
+            </ol>
+        </div>
+
+    </section>
+
+
+    <!-- LEARNING PAGE -->
+    <section id="learn">
+
+        <h2>Learn: Financial Education</h2>
+
+        <p>
+            Study the lessons below to understand important financial
+            concepts. After reading a lesson, mark it as complete.
+        </p>
+
+        <div class="grid">
+
+            <div class="card">
+                <h3>Lessons</h3>
+                <div id="lessonList" class="lesson-list"></div>
+            </div>
+
+            <div class="card lesson-content" id="lessonContent">
+                <h3>Select a Lesson</h3>
+                <p>Your lesson content will appear here.</p>
+            </div>
+
+        </div>
+
+        <div class="card references">
+
+            <h3>Works Cited</h3>
+
+            <ol>
+                <li>
+                    Consumer Financial Protection Bureau.
+                    “Youth Financial Education.”
+                    <i>Consumer Financial Protection Bureau</i>,
+                    https://www.consumerfinance.gov/consumer-tools/educator-tool/youth-financial-education/.
+                    Accessed 6 Nov. 2026.
+                </li>
+
+                <li>
+                    Consumer Financial Protection Bureau.
+                    “Find Financial Literacy Activities.”
+                    <i>Consumer Financial Protection Bureau</i>,
+                    https://www.consumerfinance.gov/consumer-tools/educator-tool/youth-financial-education/teach/activities/.
+                    Accessed 6 Nov. 2026.
+                </li>
+
+                <li>
+                    Investor.gov.
+                    “Introduction to Investing.”
+                    <i>U.S. Securities and Exchange Commission</i>,
+                    https://www.investor.gov/introduction-investing.
+                    Accessed 6 Nov. 2026.
+                </li>
+
+                <li>
+                    Investor.gov.
+                    “Compound Interest Calculator.”
+                    <i>U.S. Securities and Exchange Commission</i>,
+                    https://www.investor.gov/financial-tools-calculators/calculators/compound-interest-calculator.
+                    Accessed 6 Nov. 2026.
+                </li>
+            </ol>
+
+            <p class="muted">
+                The information is provided for educational purposes.
+                MoneyWise uses virtual money and does not provide
+                financial advice.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- BUDGET PAGE -->
+    <section id="budget">
+
+        <h2>Budget Planner</h2>
+
+        <p>
+            Record your practice income and expenses. Your virtual
+            balance will update automatically.
+        </p>
+
+        <div class="grid">
+
+            <div class="card">
+
+                <h3>Add a Transaction</h3>
+
+                <label for="transactionType">Transaction Type</label>
+
+                <select id="transactionType">
+                    <option value="income">Income</option>
+                    <option value="expense">Expense</option>
+                </select>
+
+                <label for="transactionName">Description</label>
+
+                <input
+                    type="text"
+                    id="transactionName"
+                    placeholder="e.g. Allowance or transport"
+                    maxlength="60"
+                >
+
+                <label for="transactionAmount">Amount (GH₵)</label>
+
+                <input
+                    type="number"
+                    id="transactionAmount"
+                    min="0.01"
+                    step="0.01"
+                    placeholder="0.00"
+                >
+
+                <button class="action" id="addTransaction">
+                    Add Transaction
+                </button>
+
+                <p id="budgetMessage" aria-live="polite"></p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>Budget Summary</h3>
+
+                <p>
+                    Total Income:
+                    <b id="totalIncome">GH₵ 0.00</b>
+                </p>
+
+                <p>
+                    Total Expenses:
+                    <b id="totalExpenses">GH₵ 0.00</b>
+                </p>
+
+                <hr>
+
+                <p>Current Virtual Balance</p>
+
+                <div class="metric" id="budgetBalance">
+                    GH₵ 1,000.00
+                </div>
+
+                <button class="action secondary" id="resetBudget">
+                    Reset Budget
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <h3>Transaction History</h3>
+
+            <div id="transactionList">
+                No transactions yet.
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- SAVINGS PAGE -->
+    <section id="savings">
+
+        <h2>Savings Goal</h2>
+
+        <p>
+            Set a financial goal and practise saving virtual money
+            towards achieving it.
+        </p>
+
+        <div class="grid">
+
+            <div class="card">
+
+                <h3>Set Your Goal</h3>
+
+                <label for="savingsName">What are you saving for?</label>
+
+                <input
+                    type="text"
+                    id="savingsName"
+                    placeholder="e.g. School supplies"
+                    maxlength="60"
+                >
+
+                <label for="savingsTarget">Target Amount (GH₵)</label>
+
+                <input
+                    type="number"
+                    id="savingsTarget"
+                    min="1"
+                    step="0.01"
+                    value="300"
+                >
+
+                <button class="action" id="saveGoal">
+                    Save Goal
+                </button>
+
+                <p id="savingsMessage" aria-live="polite"></p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3 id="goalTitle">My Savings Goal</h3>
+
+                <div class="metric" id="savingsAmount">
+                    GH₵ 0.00
+                </div>
+
+                <p>
+                    Target:
+                    <span id="savingsTargetText">GH₵ 300.00</span>
+                </p>
+
+                <div class="progress-track">
+                    <div class="progress-fill" id="savingsBar"></div>
+                </div>
+
+                <p id="savingsPercent">0% complete</p>
+
+                <label for="savingsAddAmount">
+                    Add to Savings (GH₵)
+                </label>
+
+                <input
+                    type="number"
+                    id="savingsAddAmount"
+                    min="0.01"
+                    step="0.01"
+                    placeholder="Amount"
+                >
+
+                <button class="action" id="addSavings">
+                    Add Savings
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- INVESTMENT PAGE -->
+    <section id="invest">
+
+        <h2>Investment Simulator</h2>
+
+        <p>
+            Explore how different hypothetical investment outcomes
+            can affect the value of money. These are simulations,
+            not predictions.
+        </p>
+
+        <div class="grid">
+
+            <div class="card">
+
+                <h3>Choose an Investment Scenario</h3>
+
+                <label for="investmentAmount">
+                    Virtual Investment Amount (GH₵)
+                </label>
+
+                <input
+                    type="number"
+                    id="investmentAmount"
+                    min="1"
+                    step="0.01"
+                    value="100"
+                >
+
+                <label for="investmentScenario">
+                    Possible Outcome
+                </label>
+
+                <select id="investmentScenario">
+                    <option value="5">Small Gain (+5%)</option>
+                    <option value="15">Larger Gain (+15%)</option>
+                    <option value="-10">Small Loss (-10%)</option>
+                    <option value="-25">Larger Loss (-25%)</option>
+                </select>
+
+                <button class="action" id="runInvestment">
+                    Run Simulation
+                </button>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>Simulation Result</h3>
+
+                <p>
+                    Starting Amount:
+                    <b id="investStart">GH₵ 100.00</b>
+                </p>
+
+                <p>
+                    Change:
+                    <b id="investChange">GH₵ 0.00</b>
+                </p>
+
+                <p>Final Value:</p>
+
+                <div class="metric" id="investFinal">
+                    GH₵ 100.00
+                </div>
+
+                <p class="muted" id="investExplanation">
+                    Choose a scenario and run the simulation.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <h3>Important Investment Concepts</h3>
+
+            <ul>
+                <li>Investments can increase or decrease in value.</li>
+                <li>Higher potential returns often involve higher risk.</li>
+                <li>Past performance does not guarantee future results.</li>
+                <li>Diversification can reduce some risks but cannot
+                    remove all investment risk.</li>
+            </ul>
+
+        </div>
+
+    </section>
+
+
+    <!-- QUIZ PAGE -->
+    <section id="quiz">
+
+        <h2>Financial Knowledge Quiz</h2>
+
+        <div class="notice" id="quizNotice">
+            Complete the lessons before attempting the quiz
+            for the best learning experience.
+        </div>
+
+        <form id="quizForm" class="card"></form>
+
+        <div
+            id="quizResult"
+            class="card"
+            style="display:none"
+            aria-live="polite"
+        ></div>
+
+    </section>
+
+
+    <!-- PROGRESS PAGE -->
+    <section id="progress">
+
+        <h2>Your Learning Progress</h2>
+
+        <div class="grid">
+
+            <div class="card">
+
+                <h3>Lessons Completed</h3>
+
+                <div class="metric" id="progressLessons">
+                    0 / 7
+                </div>
+
+                <div class="progress-track">
+                    <div class="progress-fill" id="lessonsBar"></div>
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>Quiz Results</h3>
+
+                <div class="metric" id="progressQuiz">
+                    Not taken
+                </div>
+
+                <p id="quizAttempts" class="muted">
+                    Attempts: 0
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>Budget Practice</h3>
+
+                <div class="metric" id="progressTransactions">
+                    0
+                </div>
+
+                <p class="muted">Transactions recorded.</p>
+
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <h3>Reset Practice Data</h3>
+
+            <p>
+                This clears your balance, transactions, savings,
+                completed lessons and quiz results.
+            </p>
+
+            <button class="action" id="resetAll">
+                Reset All Data
+            </button>
+
+            <p id="resetMessage" aria-live="polite"></p>
+
+        </div>
+
+    </section>
+
+</main>
+
+<footer>
+    MoneyWise · Educational Prototype · Virtual Money Only
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
