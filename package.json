@@ -1,0 +1,12 @@
+{
+  "name": "moneywise",
+  "version": "2.0.0",
+  "private": true,
+  "description": "A static financial learning playground using virtual Ghana cedis.",
+  "scripts": {
+    "test": "node --test --test-reporter=spec tests/*.test.cjs",
+    "check": "node --check script.js && node --check model.js && node --check views.js && node --check content.js"
+  },
+  "engines": { "node": ">=18" },
+  "devDependencies": { "jsdom": "26.1.0" }
+}
